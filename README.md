@@ -14,21 +14,32 @@ applicable à tout SI bancaire (private banking, gestion de portefeuilles, confo
 
 ## 🏗️ Architecture
 
+```
 qa-banking-automation/
-
-├── pages/          # Page Object Models
-
-├── fixtures/       # Fixtures par rôle utilisateur
-
-├── tests/
-
-│   ├── e2e/        # Tests End-to-End UI
-
-│   └── api/        # Tests API REST
-
-├── data/           # Jeux de données de test
-
-└── utils/          # Fonctions utilitaires
+│
+├── 📄 pages/                  # Page Object Models
+│   ├── LoginPage.ts           # Page de connexion
+│   └── InventoryPage.ts       # Page catalogue produits
+│
+├── 🔧 fixtures/               # Fixtures par rôle utilisateur
+│   └── index.ts               # loginPage, inventoryPage, authenticatedPage
+│
+├── 🧪 tests/
+│   ├── e2e/                   # Tests End-to-End UI
+│   │   ├── auth.spec.ts               # 4 tests — authentification
+│   │   ├── inventory.spec.ts          # 5 tests — catalogue produits
+│   │   └── inventory-with-fixtures.spec.ts  # 3 tests — fixtures par rôle
+│   └── api/                   # Tests API REST
+│       └── bookings.spec.ts   # 6 tests — CRUD complet avec auth token
+│
+├── 📦 data/                   # Jeux de données de test
+│   └── users.ts               # Profils utilisateurs (valide, bloqué, invalide)
+│
+├── 🛠️ utils/                  # Fonctions utilitaires
+├── playwright.config.ts       # Configuration multi-browser, baseURL, reporters
+└── .github/workflows/
+    └── playwright.yml         # Pipeline CI/CD — jobs E2E et API parallèles
+```
 
 ## 🧪 Couverture actuelle
 
