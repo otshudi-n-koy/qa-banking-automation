@@ -1,5 +1,8 @@
 # qa-banking-automation
 
+![CI](https://github.com/otshudi-n-koy/qa-banking-automation/actions/workflows/playwright.yml/badge.svg)
+
+
 > Framework QA Automation — Banking context  
 > Built with Playwright + TypeScript
 
@@ -32,9 +35,10 @@ qa-banking-automation/
 | Module | Tests | Statut |
 |--------|-------|--------|
 | Authentification | 4 | ✅ |
-| Catalogue produits | En cours | 🚧 |
-| Panier / Commande | Planifié | 📋 |
-| Tests API | Planifié | 📋 |
+| Catalogue produits | 5 | ✅ |
+| Fixtures par rôle | 3 | ✅ |
+| API REST (CRUD) | 6 | ✅ |
+| **Total** | **18** | ✅ |
 
 ## 🚀 Lancer les tests
 
