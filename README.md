@@ -85,6 +85,36 @@ npx playwright show-report
 - **Data-driven testing** — données de test externalisées
 - **Fixtures par rôle** — authentification centralisée
 - **Multi-browser** — Chromium, Firefox
+## 🔐 Gestion de session — storageState
+
+Pour optimiser le temps d'exécution, le framework utilise le pattern `storageState` de Playwright :
+
+- Un projet `setup` s'authentifie une seule fois et sauvegarde l'état de session (cookies + localStorage) dans `playwright/.auth/user.json`
+- Les autres projets (`chromium`, `firefox`) déclarent une dépendance sur `setup` et réutilisent cet état via `storageState`
+- Les tests démarrent donc déjà authentifiés, sans repasser par le flow de login à chaque fois
+
+```typescript
+// playwright.config.ts
+projects: [
+  { name: 'setup', testMatch: /.*\.setup\.ts/ },
+  {
+    name: 'chromium',
+    use: { storageState: 'playwright/.auth/user.json' },
+    dependencies: ['setup'],
+  },
+]
+```
+
+```markdown
+| Module | Tests | Statut |
+|--------|-------|--------|
+| Authentification | 4 | ✅ |
+| Catalogue produits | 5 | ✅ |
+| Fixtures par rôle | 3 | ✅ |
+| API REST (CRUD) | 6 | ✅ |
+| Session storageState | 2 | ✅ |
+| **Total** | **17** | ✅ |
+```
 
 ## 👤 Auteur
 
