@@ -116,25 +116,11 @@ projects: [
 
 **Flux d'exécution :**
 
-┌─────────────┐      sauvegarde       ┌──────────────────────┐
-
-│   setup     │ ──────────────────►   │ user.json (session)  │
-
-│ (login 1x)  │                       │ cookies + localStorage│
-
-└─────────────┘                       └──────────────────────┘
-
-│
-
-▼ réutilisé par
-
-┌──────────────────────┐
-
-│  chromium / firefox  │
-
-│  (déjà authentifiés) │
-
-└──────────────────────┘
+```mermaid
+graph LR
+    A[Projet setup<br/>login 1x] -->|sauvegarde| B[user.json<br/>cookies + localStorage]
+    B -->|réutilisé par| C[chromium / firefox<br/>déjà authentifiés]
+```
 
 ```typescript
 // playwright.config.ts
